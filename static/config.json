@@ -1,0 +1,635 @@
+{
+    "name": "Leia 3D Viewer",
+    "layers": [
+        {
+            "id": "1",
+            "type": "wmts",
+            "title": "BRT Achtergrondkaart (WMTS)",
+            "groupId": "",
+            "imageUrl": "",
+            "legendUrl": "",
+            "isBackground": true,
+            "defaultAddToManager": true,
+            "defaultOn": true,
+            "attribution": "PDOK",
+            "settings": {
+                "url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?",
+                "featureName": "standaard",
+                "contentType": "image/png"
+            }
+        },
+        {
+            "id": "2",
+            "type": "wmts",
+            "title": "Luchtfoto Actueel HR (WMTS)",
+            "groupId": "",
+            "legendUrl": "",
+            "isBackground": true,
+            "defaultAddToManager": true,
+            "defaultOn": true,
+            "transparent": true,
+            "opacity": 0,
+            "settings": {
+                "url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0",
+                "featureName": "Actueel_orthoHR",
+                "contenttype": "image/jpeg",
+                "matrixids": [
+                    "00",
+                    "01",
+                    "02",
+                    "03",
+                    "04",
+                    "05",
+                    "06",
+                    "07",
+                    "08",
+                    "09",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17",
+                    "18",
+                    "19"
+                ],
+                "matrixset": "EPSG:3857"
+            }
+        },
+        {
+            "id": "3",
+            "type": "3dtiles",
+            "title": "3D BAG",
+            "groupId": "",
+            "legendUrl": "",
+            "isBackground": false,
+            "defaultAddToManager": true,
+            "defaultOn": false,
+            "transparent": false,
+            "opacity": 0,
+            "settings": {
+                "url": "https://api.pdok.nl/kadaster/3d-basisvoorziening/ogc/v1_0/collections/gebouwen/3dtiles",
+                "defaultTheme": "Bouwjaar",
+                "enableHeightControl": true,
+                "themes": [
+                    {
+                        "title": "Bouwjaar",
+                        "conditions": [
+                            [
+                                "${oorspronkelijkBouwjaar} < 1900",
+                                "color(\"#F62D2D\")"
+                            ],
+                            [
+                                "${oorspronkelijkBouwjaar} >= 1900 && ${oorspronkelijkBouwjaar} < 1950",
+                                "color(\"#D3212D\")"
+                            ],
+                            [
+                                "${oorspronkelijkBouwjaar} >= 1950 && ${oorspronkelijkBouwjaar} < 1970",
+                                "color(\"#722B6A\")"
+                            ],
+                            [
+                                "${oorspronkelijkBouwjaar} >= 1970 && ${oorspronkelijkBouwjaar} < 1990",
+                                "color(\"#412F88\")"
+                            ],
+                            [
+                                "${oorspronkelijkBouwjaar} >= 1990",
+                                "color(\"#1034A6\")"
+                            ],
+                            [
+                                "true",
+                                "color(\"#ededed\")"
+                            ]
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+           "id": "4",
+            "type": "wms",
+            "title": "PDOK Wijken",
+            "groupId": "",
+            "legendEnabled": true,
+            "legendUrl": "",
+            "isBackground": false,
+            "defaultAddToManager": true,
+            "defaultOn": false,
+            "transparent": false,
+            "settings": {
+                "url": "https://service.pdok.nl/cbs/wijkenbuurten/2024/wms/v1_0",
+                "featureName": "wijken",
+                "contenttype": "image/png",
+                "tools": {
+                    "styleSwitcher": {
+                        "enabled": true
+                    }
+                }
+            }
+        }
+    ],
+    "viewer": {
+        "title": "3D viewer",
+        "subTitle": "Leia Example",
+        "logo": "images/leia_logo.png",
+        "startPosition": {
+            "x": 3.85,
+            "y": 51.52,
+            "z": 90000,
+            "heading": 360.00000,
+            "pitch": -89,
+            "duration": 1.50
+        },
+        "colors": {
+            "ui-background": "#ffffff",
+            "interactive-01": "#214170",
+            "interactive-02": "#171717",
+            "interactive-03": "#0062ff",
+            "interactive-04": "#0062ff",
+            "ui-01": "#f3f3f3",
+            "ui-02": "#ffffff",
+            "ui-03": "#dcdcdc",
+            "ui-04": "#8c8c8c",
+            "ui-05": "#171717",
+            "text-01": "#171717",
+            "text-02": "#565656",
+            "text-03": "#8c8c8c",
+            "text-04": "#ffffff",
+            "link-01": "#0062ff",
+            "icon-01": "#171717",
+            "icon-02": "#565656",
+            "icon-03": "#ffffff",
+            "field-01": "#f3f3f3",
+            "field-02": "#ffffff",
+            "inverse-01": "#ffffff",
+            "inverse-02": "#3d3d3d",
+            "support-01": "#da1e28",
+            "support-02": "#24a148",
+            "support-03": "#fdd13a",
+            "support-04": "#054ada",
+            "inverse-support-01": "#fb4b53",
+            "inverse-support-02": "#3dbb61",
+            "inverse-support-03": "#fdd13a",
+            "inverse-support-04": "#408bfc",
+            "overlay-01": "#171717CC",
+            "interaction-tokens": "#0062ff",
+            "hover-primary": "#376dbc",
+            "hover-primary-text": "#054ada",
+            "hover-secondary": "#4c4c4c",
+            "hover-tertiary": "#4cabd8",
+            "hover-ui": "#e5e5e5",
+            "hover-selected-ui": "#cacaca",
+            "hover-danger": "#ba1b23",
+            "hover-row": "#e5e5e5",
+            "active-primary": "#376dbc",
+            "active-secondary": "#6f6f6f",
+            "active-tertiary": "#0530ad",
+            "active-ui": "#bebebe",
+            "active-danger": "#750e13",
+            "selected-ui": "#dcdcdc",
+            "highlight": "#C9deff",
+            "skeleton-01": "#e5e5e5",
+            "skeleton-02": "#bebebe",
+            "visited-link": "#'Visited links'",
+            "disabled-01": "#f3f3f3",
+            "disabled-02": "#bebebe",
+            "disabled-03": "#8c8c8c"
+        }
+    },
+    "groups": [],
+    "tools": [
+        {
+            "id": "layerLibrary",
+            "enabled": true,
+            "settings": {
+                "connectors": [
+                    {
+                        "type": "geonetwork",
+                        "url": "https://dataportaal.zeeland.nl/dataportaal"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "layerManager",
+            "enabled": true,
+            "settings": {}
+        },
+        {
+            "id": "featureInfo",
+            "enabled": true
+        },
+        {
+            "id": "info",
+            "enabled": true,
+            "settings": {
+                "title": "Viewer title",
+                "description": "Some additional information, supports <b>HTML</b>"
+            }
+        },
+        {
+            "id": "help",
+            "enabled": true,
+            "settings": {
+                "showOnStart": true
+            }
+        },
+        {
+            "id": "bookmarks",
+            "enabled": true,
+            "settings": {
+                "bookmarks": [
+                    {
+                        "title": "Heinenoordtunnel",
+                        "description": "De Heinenoordtunnel is een verkeerstunnel in de Nederlandse provincie Zuid-Holland",
+                        "x": 4.51056,
+                        "y": 51.833003,
+                        "z": 2000,
+                        "heading": 0,
+                        "pitch": -65,
+                        "duration": 2
+                    }
+                ]
+            }
+        },
+        {
+            "id": "cesium",
+            "enabled": true,
+            "settings": {
+                "fxaa": true,
+                "shadows": false,
+                "animate": false,
+                "resolutionScale": 1,
+                "maximumScreenSpaceError": 16,
+                "groundAtmosphere": true,
+                "globeOpacity": 100,
+                "lighting": true,
+                "skyAtmosphere": true,
+                "fog": true,
+                "highDynamicRange": false,
+                "pointCloudAttenuationMaximum": 2,
+                "terrainProviders": [
+                    {
+                        "title": "PDOK Terrain",
+                        "url": "https://api.pdok.nl/kadaster/3d-basisvoorziening/ogc/v1_0/collections/digitaalterreinmodel/quantized-mesh",
+                        "vertexNormals": true
+                    },
+                    {
+                        "title": "Zeeland 1m",
+                        "url": "https://virtueel.zeeland.nl/tiles_other/zeeland_1m",
+                        "vertexNormals": true
+                    },
+                    {
+                        "title": "Uit"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "config_switcher",
+            "enabled": false,
+            "settings": {
+                "fullReload": true
+            }
+        },
+        {
+            "id": "projects",
+            "enabled": false,
+            "settings": {
+                "openProject": "My project name",
+                "projects": [
+                    {
+                        "name": "My project name",
+                        "description": "Short description of my project",
+                        "polygon": [
+                            [
+                                4.9000,
+                                52.39961
+                            ],
+                            [
+                                4.91807,
+                                52.39961
+                            ],
+                            [
+                                4.9193,
+                                52.38107
+                            ],
+                            [
+                                4.9000,
+                                52.38575
+                            ]
+                        ],
+                        "layers": [
+                            "3D BAG"
+                        ],
+                        "cameraPosition": {
+                            "x": 4.94802,
+                            "y": 52.35647,
+                            "z": 2176.53646,
+                            "heading": 326.85260,
+                            "pitch": -24.10943,
+                            "duration": 1.50
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "flooding",
+            "enabled": false,
+            "settings": {
+                "scenariosBaseUrl": "https://virtueel.zeeland.nl/tiles_other/overstroming/",
+                "breachUrl": "https://virtueel.zeeland.nl/tiles_other/breslocaties.geojson",
+                "roadsUrl": "https://service.pdok.nl/rws/vervoersnetwerken/wegen/wms/v1_0",
+                "floodedRoadsUrl": "https://virtueel.zeeland.nl/pygeoapi",
+                "floodedRoadsStyle": [
+                    {
+                        "property": "flood_depth",
+                        "stops": [
+                            {
+                                "value": 0,
+                                "color": "#ffff00"
+                            },
+                            {
+                                "value": 3,
+                                "color": "#ff0000"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "measure",
+            "enabled": true
+        },
+        {
+            "id": "stories",
+            "enabled": true,
+            "settings": {
+                "stories": [
+                    {
+                        "name": "De Zeeuwse klimaatlabels",
+                        "description": "Over de klimaatatlabels",
+                        "width": "calc(50vw - 49px)",
+                        "force2DMode": false,
+                        "staticCamera": true,
+                        "requestPolygonArea": {
+                            "enabled": false
+                        },
+                        "baseLayerId": "1",
+                        "chapters": [
+                            {
+                                "id": "intro",
+                                "steps": [
+                                    {
+                                        "title": "Introductie",
+                                        "html": "<div><img src=\"./images/klimaatlabels/intro.png\" alt=\"De Zeeuwse klimaatlabels\" loading=\"lazy\"/><p>De Zeeuwse overheden streven ernaar om een gezonde en leefbare openbare ruimte te behouden en te realiseren waar het fijn wonen, werken, ontmoeten en recreëren is.</p><p>Om deze ambitie kracht bij te zetten zijn de klimaatlabels uitgewerkt. Op basis van klimaatadaptatie indicatoren koppelen we aan elke postcode in het bebouwde gebied van provincie Zeeland een klimaatlabel. Dit doen we op basis van de huidige inrichting en voorspellingen voor het klimaat in het WH2050 scenario. Zo wordt duidelijk hoe een straat scoort op verschillende klimaatthema's.</p><img src=\"./images/klimaatlabels/labeldefinities_uitgelegd.png\" alt=\"uitleg labeldefinities\" width=715><p>Per klimaatthema definiëren we meerdere indicatoren om inzichtelijk te krijgen hoe de overheden in provincie Zeeland scoren op het thema. Elke indicator heeft bijbehorende labeldefinities waarop we toetsen. Als een gebied op alle indicatoren van een klimaatthema minimaal een label B scoort, dan is het klimaatadaptief ingericht op dat klimaateffect.</p><img src=\"./images/klimaatlabels/uitleg_labels_flowchart.png\" alt=\"flowchart labeldefinties\" width=715></div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "def",
+                                "steps": [
+                                    {
+                                        "title": "Klimaatlabel definities",
+                                        "html": "<div><p>Voor de klimaatthema's hitte (& groen), wateroverlast, overstroming, droogte en verzilting zijn er indicatoren met bijbehorende labels gedefinieerd. In de tabel is te zien welke indicatoren zijn gebruikt, en welke labeldefinities daarbij horen. In totaal zijn er 16 indicatoren gedefinieerd. De indicatoren en labeldefinities kunnen in meer detail worden bekeken per thema.</p><style>.tbl1008-TRD_htmlChWebsite_1 .x2 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; color: #000000;background-color: #FFFFFF;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x3 {border-left: 2px solid #000000; border-top: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFFFFF;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x4 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #70AD47;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x5 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #E2EFD9;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x6 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFE599;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x7 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #F2AD7E;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x8 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FF7979;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x9 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; color: #000000;background-color: #FFD9CD;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x10 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; color: #000000;background-color: #FFD9CD;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x11 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFD9CD;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x12 {border-right: 2px solid #000000; border-top: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFD9CD;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x13 {border-left: 2px solid #000000; border-right: 2px solid #000000; color: #000000;background-color: #FFD9CD;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x14 {border-left: 2px solid #000000; border-right: 2px solid #000000; color: #000000;background-color: #FFD9CD;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x15 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFD9CD;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x16 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFD9CD;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x17 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFD9CD;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x18 {border-right: 2px solid #000000; color: #000000;background-color: #FFD9CD;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x19 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; color: #000000;background-color: #DEEAF6;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x20 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #DEEAF6;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x21 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #DEEAF6;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x22 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; color: #000000;background-color: #9CC2E5;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x23 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #9CC2E5;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x24 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #9CC2E5;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x25 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #9CC2E5;font-weight: bold;font-style: italic;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x26 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #9CC2E5;font-style: italic;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x27 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #ECE7FF;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x28 {border-right: 2px solid #000000; border-top: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #ECE7FF;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x29 {border-right: 2px solid #000000; border-top: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #ECE7FF;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x30 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFF2CC;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x31 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; color: #000000;background-color: #FFF2CC;font-weight: bold;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x32 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; color: #000000;background-color: #FFF2CC;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x33 {border-right: 2px solid #000000; color: #000000;background-color: #FFF2CC;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x34 {border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFF2CC;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x35 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFF2CC;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x36 {border-right: 2px solid #000000; border-top: 2px solid #000000; color: #000000;background-color: #FFF2CC;text-align: center;vertical-align: middle;}.tbl1008-TRD_htmlChWebsite_1 .x37 {border-left: 2px solid #000000; border-right: 2px solid #000000; border-top: 2px solid #000000; border-bottom: 2px solid #000000; color: #000000;background-color: #FFF2CC;text-align: center;vertical-align: middle;}</style><table class=\"main tbl1008 tbl1008-TRD_htmlChWebsite_1\"><tbody><tr class=\"f-tablerow-after\"><td class=\"x2\" rowspan=\"2\"><p class=\"f-paragraph\">Klimaatthema</p></td><td class=\"x2\" rowspan=\"2\"><p class=\"f-paragraph\">Indicator</p></td><td class=\"x2\" rowspan=\"2\"><p class=\"f-paragraph\">Schaalniveau</p></td><td class=\"x3\" colspan=\"5\"><p class=\"f-paragraph\">Labeldefinitie</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x4\"><p class=\"f-paragraph\">A</p></td><td class=\"x5\"><p class=\"f-paragraph\">B</p></td><td class=\"x6\"><p class=\"f-paragraph\">C</p></td><td class=\"x7\"><p class=\"f-paragraph\">D</p></td><td class=\"x8\"><p class=\"f-paragraph\">E</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x9\" rowspan=\"9\"><p class=\"f-paragraph\">Hitte (&amp; groen)</p></td><td class=\"x9\"><p class=\"f-paragraph\">% Schaduwvorming op langzaamverkeersroutes en verblijfsplekken</p></td><td class=\"x10\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x10\"><p class=\"f-paragraph\">&gt;40%</p></td><td class=\"x10\"><p class=\"f-paragraph\">30-40%</p></td><td class=\"x10\"><p class=\"f-paragraph\">20-30%</p></td><td class=\"x10\"><p class=\"f-paragraph\">10-20%</p></td><td class=\"x10\"><p class=\"f-paragraph\">&lt;10%</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x11\"><p class=\"f-paragraph\">Afstand tot koelteplek</p></td><td class=\"x12\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x12\"><p class=\"f-paragraph\">0-200m</p></td><td class=\"x12\"><p class=\"f-paragraph\">200-300m</p></td><td class=\"x12\"><p class=\"f-paragraph\">300-400m</p></td><td class=\"x12\"><p class=\"f-paragraph\">400-500m</p></td><td class=\"x12\"><p class=\"f-paragraph\">&gt;500m</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x13\"><p class=\"f-paragraph\">Laag groen percentage (gras, struiken) in publiek beheerd gebied (2025)</p></td><td class=\"x14\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x14\"><p class=\"f-paragraph\">&gt;30%</p></td><td class=\"x14\"><p class=\"f-paragraph\">20-30%</p></td><td class=\"x14\"><p class=\"f-paragraph\">10-20%</p></td><td class=\"x14\"><p class=\"f-paragraph\">5-10%</p></td><td class=\"x14\"><p class=\"f-paragraph\">&lt;5%</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x11\"><p class=\"f-paragraph\">Hoog groen percentage (bomen, hoge struiken, bladoppervlak) in publiek beheerd gebied (2025)</p></td><td class=\"x12\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x12\"><p class=\"f-paragraph\">&gt;30%</p></td><td class=\"x12\"><p class=\"f-paragraph\">20-30%</p></td><td class=\"x12\"><p class=\"f-paragraph\">10-20%</p></td><td class=\"x12\"><p class=\"f-paragraph\">5-10%</p></td><td class=\"x12\"><p class=\"f-paragraph\">&lt;5%</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x15\"><p class=\"f-paragraph\">Totaal groenpercentage (publiek + privaat gebied) (2025)</p></td><td class=\"x16\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x16\"><p class=\"f-paragraph\">&gt; 40%</p></td><td class=\"x16\"><p class=\"f-paragraph\">30-40%</p></td><td class=\"x16\"><p class=\"f-paragraph\">20-30%</p></td><td class=\"x16\"><p class=\"f-paragraph\">10-20%</p></td><td class=\"x16\"><p class=\"f-paragraph\">&lt;10%</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x11\"><p class=\"f-paragraph\">Gemiddeld aantal zichtbare bomen per gebouw</p></td><td class=\"x17\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x17\"><p class=\"f-paragraph\">&gt;4</p></td><td class=\"x17\"><p class=\"f-paragraph\">3.-4</p></td><td class=\"x17\"><p class=\"f-paragraph\">1.5-3</p></td><td class=\"x17\"><p class=\"f-paragraph\">0.5-1.5</p></td><td class=\"x17\"><p class=\"f-paragraph\">&lt;0.5</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x13\" rowspan=\"2\"><p class=\"f-paragraph\">Gevoelstemperatuur (PET): huidig en WH2050</p></td><td class=\"x14\" rowspan=\"2\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x18\"><p class=\"f-paragraph\">&lt;29&#176;C</p></td><td class=\"x18\"><p class=\"f-paragraph\">29-35&#176;C</p></td><td class=\"x18\"><p class=\"f-paragraph\">35-38 &#176;C</p></td><td class=\"x18\"><p class=\"f-paragraph\">38-41&#176;C</p></td><td class=\"x18\"><p class=\"f-paragraph\">&gt;41&#176;C</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x18\"><p class=\"f-paragraph\">Lichte hittestress</p></td><td class=\"x18\"><p class=\"f-paragraph\">Gematigde hittestress;</p></td><td class=\"x18\"><p class=\"f-paragraph\">Hittestress</p></td><td class=\"x18\"><p class=\"f-paragraph\">Zware hittestress</p></td><td class=\"x18\"><p class=\"f-paragraph\">Extreme hittestress</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x11\"><p class=\"f-paragraph\">% warmtewerende of verkoelende oppervlakten</p></td><td class=\"x12\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x12\"><p class=\"f-paragraph\">&gt;40%</p></td><td class=\"x12\"><p class=\"f-paragraph\">30-40%</p></td><td class=\"x12\"><p class=\"f-paragraph\">20-30%</p></td><td class=\"x12\"><p class=\"f-paragraph\">10-20%</p></td><td class=\"x12\"><p class=\"f-paragraph\">&lt;10%</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x19\" rowspan=\"2\"><p class=\"f-paragraph\">Wateroverlast</p></td><td class=\"x20\"><p class=\"f-paragraph\">Water(diepte) op straat (bij bui T=100 in 2050)</p></td><td class=\"x21\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x21\"><p class=\"f-paragraph\">0-5cm</p></td><td class=\"x21\"><p class=\"f-paragraph\">5-10cm</p></td><td class=\"x21\"><p class=\"f-paragraph\">10-20cm</p></td><td class=\"x21\"><p class=\"f-paragraph\">20-30cm</p></td><td class=\"x21\"><p class=\"f-paragraph\">&gt;30cm</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x20\"><p class=\"f-paragraph\">Water tegen panden (bij bui T=100 in 2050)</p></td><td class=\"x21\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x21\"><p class=\"f-paragraph\">Geen water tegen panden</p></td><td class=\"x21\"><p class=\"f-paragraph\">0-5% panden</p></td><td class=\"x21\"><p class=\"f-paragraph\">5-10% panden</p></td><td class=\"x21\"><p class=\"f-paragraph\">10-20% panden</p></td><td class=\"x21\"><p class=\"f-paragraph\">&gt;20% panden</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x22\" rowspan=\"2\"><p class=\"f-paragraph\">Overstroming</p></td><td class=\"x23\"><p class=\"f-paragraph\">Maximale overstromingsdieptes bij een overstromingsscenario van 1/4000 jr (kans 1:4000)</p></td><td class=\"x24\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x24\"><p class=\"f-paragraph\">0-20cm</p></td><td class=\"x24\"><p class=\"f-paragraph\">20-50cm</p></td><td class=\"x24\"><p class=\"f-paragraph\">50-200cm</p></td><td class=\"x24\"><p class=\"f-paragraph\">200-500cm</p></td><td class=\"x24\"><p class=\"f-paragraph\">&gt;500cm</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x25\"><p class=\"f-paragraph\">Impact overstromingsscenario - actualisatie eind 2024</p></td><td class=\"x26\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x26\"><p class=\"f-paragraph\">Nader te bepalen</p></td><td class=\"x26\"><p class=\"f-paragraph\">Nader te bepalen</p></td><td class=\"x26\"><p class=\"f-paragraph\">Nader te bepalen</p></td><td class=\"x26\"><p class=\"f-paragraph\">Nader te bepalen</p></td><td class=\"x26\"><p class=\"f-paragraph\">Nader te bepalen</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x27\"><p class=\"f-paragraph\">Verzilting</p></td><td class=\"x28\"><p class=\"f-paragraph\">Zoute kwel</p></td><td class=\"x29\"><p class=\"f-paragraph\">Postcode-6</p></td><td class=\"x29\"><p class=\"f-paragraph\">Geen kwel</p></td><td class=\"x29\"><p class=\"f-paragraph\">Geringe kwel</p></td><td class=\"x29\"><p class=\"f-paragraph\">Matige kwel</p></td><td class=\"x29\"><p class=\"f-paragraph\">Sterke kwel</p></td><td class=\"x29\"><p class=\"f-paragraph\">Zeer sterke kwel</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x30\" rowspan=\"6\"><p class=\"f-paragraph\">Droogte</p></td><td class=\"x31\" rowspan=\"2\"><p class=\"f-paragraph\">Zakking in Gemiddeld Laagste Grondwaterstand (GLG) in WH2050</p></td><td class=\"x32\" rowspan=\"2\"><p class=\"f-paragraph\">Buurt</p></td><td class=\"x33\"><p class=\"f-paragraph\">Geen of verwaarloosbare daling</p></td><td class=\"x33\"><p class=\"f-paragraph\">Lichte daling</p></td><td class=\"x32\"><p class=\"f-paragraph\">Daling</p></td><td class=\"x32\"><p class=\"f-paragraph\">Sterke Daling</p></td><td class=\"x32\"><p class=\"f-paragraph\">Hele sterke daling</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x34\"><p class=\"f-paragraph\">&lt;0.1m</p></td><td class=\"x34\"><p class=\"f-paragraph\">0,1-0,25m</p></td><td class=\"x35\"><p class=\"f-paragraph\">0,25-0,5m</p></td><td class=\"x35\"><p class=\"f-paragraph\">0,5m-0,75m</p></td><td class=\"x35\"><p class=\"f-paragraph\">&gt;0,75m</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x31\" rowspan=\"2\"><p class=\"f-paragraph\">Risico op verschilzetting in WH 2050</p></td><td class=\"x32\" rowspan=\"2\"><p class=\"f-paragraph\">Buurt</p></td><td class=\"x36\"><p class=\"f-paragraph\">Zeer laag risico</p></td><td class=\"x36\"><p class=\"f-paragraph\">Laag risico</p></td><td class=\"x36\"><p class=\"f-paragraph\">Matig risico</p></td><td class=\"x36\"><p class=\"f-paragraph\">Hoog risico</p></td><td class=\"x36\"><p class=\"f-paragraph\">Zeer hoog risico</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x33\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt  &lt;1</p></td><td class=\"x33\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt &lt;5</p></td><td class=\"x33\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt  &lt;10</p></td><td class=\"x33\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt  &lt;25</p></td><td class=\"x33\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt  &lt;100</p></td></tr><tr class=\"f-tablerow-before f-tablerow-after\"><td class=\"x30\" rowspan=\"2\"><p class=\"f-paragraph\">Risico op paalrot in WH2050</p></td><td class=\"x37\" rowspan=\"2\"><p class=\"f-paragraph\">Buurt</p></td><td class=\"x36\"><p class=\"f-paragraph\">Zeer laag risico</p></td><td class=\"x36\"><p class=\"f-paragraph\">Laag risico</p></td><td class=\"x36\"><p class=\"f-paragraph\">Matig risico</p></td><td class=\"x36\"><p class=\"f-paragraph\">Hoog risico</p></td><td class=\"x36\"><p class=\"f-paragraph\">Zeer hoog risico</p></td></tr><tr class=\"f-tablerow-before\"><td class=\"x34\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt  &lt;1</p></td><td class=\"x34\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt &lt;5</p></td><td class=\"x34\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt  &lt;10</p></td><td class=\"x34\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt  &lt;25</p></td><td class=\"x34\"><p class=\"f-paragraph\">Som (aantal panden/ schadeklasse * weging schadeklasse)/ totaal aantal panden in buurt  &lt;100</p></td></tr></tbody></table></div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    },
+                                    {
+                                        "title": "Hitte",
+                                        "html": "<div>Klimaatlabel definities - hitte</div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    },
+                                    {
+                                        "title": "Wateroverlast",
+                                        "html": "<div>Klimaatlabel definities - wateroverlast</div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    },
+                                    {
+                                        "title": "Droogte",
+                                        "html": "<div>Klimaatlabel definities - droogte</div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    },
+                                    {
+                                        "title": "Overstroming",
+                                        "html": "<div>Klimaatlabel definities - overstroming</div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    },
+                                    {
+                                        "title": "Verzilting",
+                                        "html": "<div>Klimaatlabel definities - verzilting</div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "gebruik",
+                                "steps": [
+                                    {
+                                        "title": "Gebruik klimaatlabels",
+                                        "html": "<div>Gebruik van de klimaatlabels.</div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "methodiek",
+                                "steps": [
+                                    {
+                                        "title": "Methodiek & gegevens",
+                                        "html": "<div>Overzicht methodiek en gegevens.</div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "klimaatlabelmethodiek",
+                                "steps": [
+                                    {
+                                        "title": "Klimaatlabelmethodiek",
+                                        "html": "<div>Toelichting op de klimaatlabelmethodiek.</div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "data",
+                                "steps": [
+                                    {
+                                        "title": "Data",
+                                        "html": "<div>Bronnen en data die gebruikt zijn.</div>",
+                                        "globeOpacity": 100,
+                                        "camera": {
+                                            "x": 5.40068,
+                                            "y": 51.20089,
+                                            "z": 55885.52117,
+                                            "heading": 360,
+                                            "pitch": -34.77194,
+                                            "duration": 1.5
+                                        },
+                                        "layers": []
+                                    }
+                                ]
+                            }
+                        ],
+                        "chapterGroups": [
+                            {
+                                "id": "intro",
+                                "title": "Introductie",
+                                "buttonText": "Intro"
+                            },
+                            {
+                                "id": "def",
+                                "title": "Klimaatlabel definities",
+                                "buttonText": "Def"
+                            },
+                            {
+                                "id": "gebruik",
+                                "title": "Gebruik klimaatlabels",
+                                "buttonText": "Geb"
+                            },
+                            {
+                                "id": "methodiek",
+                                "title": "Methodiek & gegevens",
+                                "buttonText": "Meth"
+                            },
+                            {
+                                "id": "klimaatlabelmethodiek",
+                                "title": "Klimaatlabelmethodiek",
+                                "buttonText": "KLM"
+                            },
+                            {
+                                "id": "data",
+                                "title": "Data",
+                                "buttonText": "Data"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "search",
+            "enabled": false
+        },
+        {
+            "id": "geocoder",
+            "enabled": true,
+            "settings": {
+                "name": "locatieserver"
+            }
+        },
+        {
+            "id": "modeswitcher",
+            "enabled": true
+        },
+        {
+            "id": "flyCamera",
+            "enabled": false
+        },
+        {
+            "id": "language",
+            "enabled": true,
+            "settings": {
+                "startLanguage": "nl"
+            }
+        },
+        {
+            "id": "github",
+            "enabled": true
+        }
+    ]
+}
