@@ -12,6 +12,9 @@ services:
       options:
         max-size: "15m"
         max-file: "5"
+    networks:
+      - default
+      - berthaweb
 
   autoheal:
     image: willfarrell/autoheal
@@ -21,3 +24,7 @@ services:
       - AUTOHEAL_CONTAINER_LABEL=autoheal
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  berthaweb:
+    external: true
