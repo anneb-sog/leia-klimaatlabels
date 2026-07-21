@@ -62,8 +62,13 @@
 				}
 			})
 
-			// Directly activate story from searchParams
-			const queriedStory = $page.data.story;
+			// Directly activate story from searchParams.
+			// $page.data.story is only set when the server-side load (+layout.server.ts) runs,
+			// which requires the Node adapter. When using the static adapter there is no SSR
+			// load, so fall back to reading the query parameter directly in the browser.
+			const queriedStory = $page.data.story ?? (typeof window !== "undefined"
+				? new URLSearchParams(window.location.search).get("story")
+				: null);
 			if(!queriedStory) return;
 			for (let i = 0; i < stories.length; i++) {
 				if (stories[i].name.toLowerCase() === queriedStory.toLowerCase()) {
