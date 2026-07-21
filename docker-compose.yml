@@ -1,0 +1,23 @@
+services:
+  viewer:
+    build: .
+    container_name: klimaatlabels
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "15m"
+        max-file: "5"
+
+  autoheal:
+    image: willfarrell/autoheal
+    container_name: klimaatlabels-autoheal
+    restart: unless-stopped
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=autoheal
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
