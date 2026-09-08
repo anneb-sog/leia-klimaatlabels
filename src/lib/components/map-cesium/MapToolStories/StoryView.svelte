@@ -41,6 +41,8 @@
 	const { getToolContainer, getToolContentContainer } = getContext<any>("mapTools");
 	const dispatch = createEventDispatcher();
 
+	const intersectOffset = 200; //TODO: make this dynamic
+
 	let currentPage = writable<number>(1);
 	let activeStep: StoryStep | undefined;
 	let activeChapter: StoryChapter | undefined;
@@ -49,6 +51,7 @@
 	let width: number;
 	let height: number;
 	let navHeight: number;
+	let storyHeight: number;
 	let container: HTMLElement;
 	let content: HTMLElement;
 	let lastInputType: string;
@@ -304,6 +307,14 @@
 		}
 	});
 
+	// Spacer below the last step, so it can scroll past the intersect line like every other
+	// step. Sized so that at maximum scroll the last step ends at the intersect line: still
+	// visible, which also hints that scrolling back up is possible (there is no scrollbar).
+	$: bottomSpacerHeight = Math.max(
+		0,
+		(container?.clientHeight ?? storyHeight ?? 0) - (navHeight ?? 0) - intersectOffset
+	);
+
 	function scrollToStep(index: number): void {
 		const stepElement = getStepElementByIndex(index);
 		if (stepElement) {
@@ -425,7 +436,7 @@
 
 	function checkStep() {
 		const steps = content.getElementsByClassName("step");
-		const intersectLine = navHeight + 200; //TODO: make this dynamic
+		const intersectLine = navHeight + intersectOffset;
 
 		for (let i = 0; i < steps.length; i++) {
 			const rect = steps[i].getBoundingClientRect();
@@ -553,7 +564,7 @@ async function downloadPDF() {
 
 </script>
 
-<div class="story" bind:clientWidth={width}>
+<div class="story" bind:clientWidth={width} bind:clientHeight={storyHeight}>
 	<div
 		class="nav"
 		style="width:{width}px"
@@ -649,9 +660,6 @@ async function downloadPDF() {
 				<div class="step-heading heading-04">
 					{step.title}
 				</div>
-				<div class="step-heading-sub heading-03">
-					{$_("tools.stories.description")}
-				</div>
 				<div>
 					{@html step.html}
 				</div>
@@ -746,7 +754,7 @@ async function downloadPDF() {
 				</div>
 			</div>
 		{/each}
-		<!-- <div style="height:{height}px" /> -->
+		<div style="height:{bottomSpacerHeight}px" />
 	</div>
 </div>
 
