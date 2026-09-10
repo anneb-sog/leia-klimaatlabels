@@ -24,11 +24,6 @@ De excel introduceert een thema *Archief* voor indicatoren die vervangen zijn
 (gevoelstemperatuur PET). Dat thema bestond nog niet, dus er is geen originele
 kleur. Nu neutraal grijs `#E7E6E6`. Even laten bevestigen.
 
-**Bronvermelding STOWA bij "Water tegen panden"**
-In de oude tabel stond hier "STOWA; Richtlijn overstromingsrisico's LIWO;".
-De nieuwe excel noemt alleen nog de Landelijke Maatlat. De excel is gevolgd,
-maar dit is een inhoudelijke keuze — controleren of het bewust geschrapt is.
-
 **Kolom C "Definities" uit de excel**
 De excel heeft een kolom *Definities* die niet als tabelkolom is overgenomen;
 die tekst staat al in de tweekolomsblokken per thema. Als hij tóch in de tabel
@@ -40,6 +35,12 @@ Geen. De maatlat-afbeelding en de flowchart met RoyalHaskoningDHV-logo zijn
 uit de aangeleverde bestanden gehaald en staan in `static/images/klimaatlabels/`.
 
 ## Bewust zo gelaten
+
+**Bronvermelding bij "Water tegen panden"**
+Nagevraagd: de richtlijnen en bronnen zijn voor water tegen panden dezelfde als
+voor water op straat (Landelijke maatlat; Bestuursakkoord Water; Richtlijn
+overstromingsrisico's LIWO). In de excel stond dit fout. De tabel bij
+*Wateroverlast* volgt nu voor beide indicatoren dezelfde bronvermelding.
 
 **Verzilting is overal verwijderd**
 Conform "Verzilting voor nu verwijderen". Komt het thema terug, dan was de
