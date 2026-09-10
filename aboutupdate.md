@@ -29,6 +29,32 @@ De excel heeft een kolom *Definities* die niet als tabelkolom is overgenomen;
 die tekst staat al in de tweekolomsblokken per thema. Als hij tóch in de tabel
 moet, is dat nog werk.
 
+## Bij de deploy
+
+**De GIS-zip moet mee naar de uiteindelijke omgeving**
+`static/images/klimaatlabels/Klimaatlabels_Zeeland_GIS.zip` (828 MB) staat in
+`.gitignore` en zit dus niet in de repo. Bij *Methodiek & gegevens -> Data* wordt
+er wel naar gelinkt (`./images/klimaatlabels/Klimaatlabels_Zeeland_GIS.zip`);
+ontbreekt het bestand, dan geeft die link een 404.
+
+Bij de uiteindelijke deploy moet het bestand dus apart in
+`static/images/klimaatlabels/` gezet worden voordat de image gebouwd wordt.
+Op de testomgeving bertha is dat bewust niet gedaan: 828 MB in een docker-image
+is daar onnodig, de link is daar dus stuk.
+
+De downloads bij *Data* en *Methodiek* wijzen sinds september 2026 naar bestanden
+in deze repo in plaats van naar klimaatatlaszeeland.ireporting.nl - die vroegen om
+een login. Het gaat om deze drie:
+
+| link in de story | bestand | in de repo |
+| --- | --- | --- |
+| `./images/klimaatlabels/Klimaatlabels_Zeeland_GIS.zip` | `static/images/klimaatlabels/Klimaatlabels_Zeeland_GIS.zip` (828 MB) | nee, `.gitignore` |
+| `./images/klimaatlabels/Aanpak_voor_de_kwetsbaarheidsanalyse_Zeeland.pdf` | `static/images/klimaatlabels/Aanpak_voor_de_kwetsbaarheidsanalyse_Zeeland.pdf` (373 KB) | ja |
+| `./images/klimaatlabels/Stroomdiagrammen_GIS_analyses_Zeeuwse_Klimaatatlas_juli2026.pdf` | `static/images/klimaatlabels/Stroomdiagrammen_GIS_analyses_Zeeuwse_Klimaatatlas_juli2026.pdf` (696 KB) | ja |
+
+De links zijn relatief aan de webroot van de viewer; `static/` is die webroot, dus
+`static/images/...` op schijf wordt `./images/...` in de story.
+
 ## Ontbrekend materiaal
 
 Geen. De maatlat-afbeelding en de flowchart met RoyalHaskoningDHV-logo zijn
