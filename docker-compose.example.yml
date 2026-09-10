@@ -19,6 +19,14 @@ services:
       options:
         max-size: "15m"
         max-file: "5"
+    # When a reverse proxy in front of this container lives in its own network,
+    # join that network here and drop the "ports" mapping above so the container
+    # is only reachable through the proxy. The network is not created by this
+    # file; declare it as external below and create it once with
+    # "docker network create web".
+    # networks:
+    #   - default
+    #   - web
 
   # The Dockerfile defines a HEALTHCHECK, but Docker's restart policy only acts on
   # containers that exit, not on containers that report unhealthy. A server process
@@ -31,3 +39,7 @@ services:
       - AUTOHEAL_CONTAINER_LABEL=autoheal
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+# networks:
+#   web:
+#     external: true
