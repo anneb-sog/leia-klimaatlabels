@@ -31,16 +31,21 @@ moet, is dat nog werk.
 
 ## Bij de deploy
 
-**De GIS-zip moet mee naar de uiteindelijke omgeving**
-`static/images/klimaatlabels/Klimaatlabels_Zeeland_GIS.zip` (828 MB) staat in
-`.gitignore` en zit dus niet in de repo. Bij *Methodiek & gegevens -> Data* wordt
-er wel naar gelinkt (`./images/klimaatlabels/Klimaatlabels_Zeeland_GIS.zip`);
-ontbreekt het bestand, dan geeft die link een 404.
+**De GIS-zip hoort niet bij de broncode en moet apart meegeleverd worden**
+`Klimaatlabels_Zeeland_GIS.zip` (828 MB) staat in `.gitignore` en zit dus niet in
+de repo; een `git clone` levert het bestand niet mee. De story linkt er wel naar,
+dus zonder dat bestand geeft die download een 404.
 
-Bij de uiteindelijke deploy moet het bestand dus apart in
-`static/images/klimaatlabels/` gezet worden voordat de image gebouwd wordt.
-Op de testomgeving bertha is dat bewust niet gedaan: 828 MB in een docker-image
-is daar onnodig, de link is daar dus stuk.
+Waar de viewer ook draait - docker, een gewone webserver, een statische host -
+het bestand moet in de webroot staan als
+`images/klimaatlabels/Klimaatlabels_Zeeland_GIS.zip`, dus in deze repo op de plek
+`static/images/klimaatlabels/Klimaatlabels_Zeeland_GIS.zip`. Bij een docker-deploy
+moet het daar staan *voordat* de image gebouwd wordt: de build kopieert `static/`
+naar binnen, hij haalt niets op tijdens het draaien.
+
+Op bertha staat het bestand er sinds 21 juli 2026 handmatig neergezet, en het gaat
+daar dus gewoon mee de image in. Voor productie moet dat apart geregeld worden,
+samen met wie het aanlevert en waar het vandaan komt.
 
 De downloads bij *Data* en *Methodiek* wijzen sinds september 2026 naar bestanden
 in deze repo in plaats van naar klimaatatlaszeeland.ireporting.nl - die vroegen om
