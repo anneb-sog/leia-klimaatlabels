@@ -1,0 +1,33 @@
+# Example Docker Compose setup. Copy to docker-compose.yml and adjust for your
+# deployment; docker-compose.yml itself is gitignored, like .env.
+#
+# Make sure a production .env (based on .env.example) exists before building:
+# APP_URL and CONFIG_URL are baked into the client bundle at build time, so the
+# image must be rebuilt after changing them or anything under ./static.
+
+services:
+  viewer:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    # Picked up by the autoheal service below.
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "15m"
+        max-file: "5"
+
+  # The Dockerfile defines a HEALTHCHECK, but Docker's restart policy only acts on
+  # containers that exit, not on containers that report unhealthy. A server process
+  # that hangs while still running would never be restarted. This sidecar polls for
+  # unhealthy containers carrying the label above and restarts them.
+  autoheal:
+    image: willfarrell/autoheal
+    restart: unless-stopped
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=autoheal
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

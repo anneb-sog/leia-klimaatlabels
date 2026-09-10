@@ -29,10 +29,33 @@ npm run dev
 
 ### With Docker
 
+The image runs the static build and serves it on port 5000.
+
 ```sh
 docker build -t 3d-viewer .
-docker run -p 3000:3000 3d-viewer
+docker run -p 5000:5000 3d-viewer
 ```
+
+Note that `./static` and `.env` are copied into the image at build time, and
+`APP_URL` and `CONFIG_URL` are baked into the client bundle. Changing the
+configuration or any asset on a running host therefore has no effect until the
+image is rebuilt.
+
+#### With Docker Compose
+
+For a long-running deployment, copy `docker-compose.example.yml` to
+`docker-compose.yml` and adjust it (ports, container name, networks). Like
+`.env`, `docker-compose.yml` is gitignored so each deployment keeps its own.
+
+```sh
+cp docker-compose.example.yml docker-compose.yml
+docker compose up -d --build
+```
+
+Besides recording the run options, the example adds an `autoheal` sidecar. The
+Dockerfile defines a `HEALTHCHECK`, but Docker's restart policy only acts on
+containers that exit, not on containers reporting unhealthy; the sidecar watches
+for those and restarts them.
 
 ### With Node
 

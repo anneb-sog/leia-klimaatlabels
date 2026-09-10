@@ -10,3 +10,5 @@ node_modules
 .output
 
 static/images/klimaatlabels/Klimaatlabels_Zeeland_GIS.zip
+
+docker-compose.yml
